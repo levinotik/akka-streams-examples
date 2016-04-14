@@ -7,7 +7,7 @@ object Example6 extends App with Examples {
 
   import scala.concurrent.duration._
   /*
-    Throttle the source so that the downstream sink only processes
+    Throttle the source so that the downstream sink only processes n elements per some time period
 
     From docs:
 
@@ -20,7 +20,7 @@ object Example6 extends App with Examples {
     see https://www.wikiwand.com/en/Token_bucket
 
     Mode sets whether throttle fails when upstream is faster than throttle rate (Enforcing) or if throttle pauses
-      to meet specified rate (Shaping)
+    to meet specified rate (Shaping)
    */
 
   val source = Source(1 to 1000).throttle(elements = 10, per = 1 second, maximumBurst =  50, mode = ThrottleMode.Shaping)
